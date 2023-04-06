@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>Tela de Login com Termo de Condições</title>
+   <!-- Adicione as bibliotecas necessárias -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+   <style>
+      p {
+         text-align: justify;
+      }
+   </style>
+   <script>
+      // Defina as credenciais de login
+      const users = {
+         'jair': 'jhow',
+         'jair': 'jhow',
+         'jair': 'jhow'
+      };
+
+      // Função para validar o login
+      function login() {
+         // Obtenha os valores do campo de login e senha
+         const inputUsername = document.getElementById("inputUsername").value;
+         const inputPassword = document.getElementById("inputPassword").value;
+
+         const spanName = document.querySelector('#username');
+
+         // Verifique se o nome de usuário e a senha são válidos
+         if (users[inputUsername] === inputPassword) {
+            // Se as credenciais forem válidas, mostre o modal de termo de condições
+            $('#modal-lgpd').modal('show');
+            console.log(spanName)
+            spanName.innerText = inputUsername;
+            // Redirecione para o site do  aceitar os termos
+            document.querySelector("#modal-lgpd button.btn-primary").addEventListener("click", function () {
+               window.location.href = "https://www.gov.br/cidadania/pt-br/acesso-a-informacao/lgpd";
+            });
+         } else {
+            // Caso contrário, mostre uma mensagem de erro
+            alert("Nome de usuário ou senha incorretos.");
+         }
+      }
+
+   </script>
+</head>
+
+<body>
+   <!-- Crie um formulário de login -->
+   <div class="container mt-5">
+      <div class="row justify-content-center">
+         <div class="col-md-6">
+            <h3 class="mb-4">Login</h3>
+            <form>
+               <div class="form-group">
+                  <label for="inputUsername">Nome de Usuário:</label>
+                  <input type="text" class="form-control" id="inputUsername" required>
+               </div>
+               <div class="form-group">
+                  <label for="inputPassword">Senha:</label>
+                  <input type="password" class="form-control" id="inputPassword" required>
+               </div>
+               <button type="button" class="btn btn-success" onclick="login()">Entrar</button>
+            </form>
+         </div>
+      </div>
+   </div>
+   <!-- Crie o modal de termo de condições -->
+   <div class="modal fade" id="modal-lgpd" tabindex="-1" role="dialog" aria-labelledby="modal-lgpd-title"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="modal-lgpd-title">Termos de condições e uso</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+               <p>Eu, <span id="username"></span> aceito os termos apresentados.
+                   <strong>AdotaJáMaricá</strong>, em conformidade com as disposições da <a
+                     target="_blank" href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm">Lei
+               
+               </p>
+               <p>Este termo de aceitação entra em vigor a partir da data de entrega do Softwere
+                  <strong>LGPD</strong>
+                  .
+               </p>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
+               <button type="button" class="btn btn-danger">Aceitar</button>
+            </div>
+         </div>
+      </div>
+   </div>
+</body>
+
+</html>
+
